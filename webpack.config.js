@@ -6,7 +6,7 @@
 
 var CONFIG = {
     indexHtmlTemplate: './src/index.html',
-    fsharpEntry: './src/Demo.fsproj',
+    fsharpEntry: './src/App.fs.js',
     cssEntry: './src/scss/main.scss',
     outputDir: './output',
     assetsDir: './public',
@@ -113,23 +113,6 @@ module.exports = {
     // - file-loader: Moves files referenced in the code (fonts, images) into output folder
     module: {
         rules: [
-            {
-                test: /\.fs(x|proj)?$/,
-                use: {
-                    loader: "fable-loader",
-                    options: {
-                        babel: CONFIG.babel
-                    }
-                },
-            },
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: CONFIG.babel
-                },
-            },
             {
                 test: /\.(sass|scss|css)$/,
                 use: [
