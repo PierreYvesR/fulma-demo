@@ -14,19 +14,6 @@ var CONFIG = {
     // When using webpack-dev-server, you may need to redirect some calls
     // to a external API server. See https://webpack.js.org/configuration/dev-server/#devserver-proxy
     devServerProxy: undefined,
-    // Use babel-preset-env to generate JS compatible with most-used browsers.
-    // More info at https://github.com/babel/babel/blob/master/packages/babel-preset-env/README.md
-    babel: {
-        presets: [
-            ["@babel/preset-env", {
-                "modules": false,
-                "useBuiltIns": "usage",
-                "corejs": 3,
-                // This saves around 4KB in minified bundle (not gzipped)
-                // "loose": true,
-            }]
-        ],
-    }
 }
 
 // If we're running the webpack-dev-server, assume we're in development mode
@@ -107,7 +94,6 @@ module.exports = {
         hot: true,
         inline: true
     },
-    // - babel-loader: transforms JS to old syntax (compatible with old browsers)
     // - sass-loaders: transforms SASS/SCSS into JS
     // - file-loader: Moves files referenced in the code (fonts, images) into output folder
     module: {
@@ -116,14 +102,6 @@ module.exports = {
                 test: /\.js$/,
                 enforce: "pre",
                 use: ["source-map-loader"],
-            },
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: CONFIG.babel
-                },
             },
             {
                 test: /\.(sass|scss|css)$/,
